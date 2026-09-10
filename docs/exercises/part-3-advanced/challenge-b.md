@@ -13,7 +13,7 @@
 
 > **Time**: ~90 minutes
 
-> **Recommended model:** `sonnet` at high effort, or `opus` — porting to an unfamiliar stack benefits from stronger reasoning (`/model opus`)
+> **Recommended model:** `opus` (Claude Opus 5); raise effort when porting to an unfamiliar stack (`/effort xhigh` or `/effort max`)
 
 > **Scope note:** A full port of all features (auth, lists, search, drag-drop, dark mode) is ambitious for 90 minutes. Focus on core CRUD functionality first — the learning is in the process of translating requirements to a new stack, not in achieving 100% feature parity. A partial port with clean architecture and good tests is a better outcome than a rushed complete port.
 

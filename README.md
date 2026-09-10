@@ -15,7 +15,7 @@ Software engineers who want to master agentic development patterns — from basi
 - One of:
   - **GitHub Codespaces** (recommended, zero local setup)
   - **Docker Desktop** + VS Code with Dev Containers extension
-  - **Local setup**: Python 3.11+, Node.js 18+, [uv](https://docs.astral.sh/uv/)
+  - **Local setup**: Python 3.11+, Node.js 22+ (for MCP servers), [uv](https://docs.astral.sh/uv/)
 
 ## Getting Started
 
@@ -123,11 +123,13 @@ Choose **one** of the three options below.
    # uv package manager
    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-   # Node.js (18+, needed for MCP servers)
+   # Node.js (22+, needed for the MCP servers used in the exercises)
    node --version
 
-   # Claude Code
-   npm install -g @anthropic-ai/claude-code
+   # Claude Code (native installer, recommended)
+   curl -fsSL https://claude.ai/install.sh | bash
+   # Windows PowerShell: irm https://claude.ai/install.ps1 | iex
+   # Alternative: npm install -g @anthropic-ai/claude-code
    ```
 3. Set up the todo app:
    ```bash

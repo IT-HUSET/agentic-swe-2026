@@ -2,62 +2,65 @@
 
 Token costs, compliance metrics, and context thresholds for informed decisions about AI-assisted development.
 
-**Last updated:** March 2026. Prices change frequently — verify at each provider's pricing page before budgeting.
+**Last updated:** September 2026. Prices change frequently — verify at each provider's pricing page before budgeting.
 
 ---
 
-## Token Costs by Model (March 2026)
+## Token Costs by Model (September 2026)
 
 ### Anthropic (Claude)
 
 | Model | Input $/MTok | Output $/MTok | Context Window | Best For |
 |-------|-------------|--------------|----------------|----------|
-| **Opus 4.6** | $5 | $25 | 1M tokens | Complex reasoning, architecture, multi-file changes |
-| **Sonnet 4.6** | $3 | $15 | 1M tokens | Most coding tasks; best cost/quality balance |
+| **Fable 5.1** | $10 | $50 | 1M tokens | Hardest reasoning and long-horizon agentic work; premium tier |
+| **Opus 5** | $5 | $25 | 1M tokens | Default for coding in this workshop: complex reasoning, architecture, multi-file changes |
+| **Sonnet 5** | $2 | $10 | 1M tokens | Well-scoped tasks, cheaper worker sub-agents |
 | **Haiku 4.5** | $1 | $5 | 200k tokens | Simple edits, classification, quick completions |
 
-Batch API: 50% discount on all tokens. Prompt caching: 0.1x input on cache hits.
+Batch API: 50% discount on all tokens. Prompt caching: 0.1x input on cache hits (0.025x on Fable 5.1). Fast mode (Opus 5 and Opus 4.8 only, `/fast` in Claude Code): $10 / $50 per MTok. Previous generation still served at unchanged prices: Opus 4.8 / 4.7 / 4.6 ($5 / $25), Sonnet 4.6 ($3 / $15).
 
-Source: platform.claude.com/docs/en/about-claude/pricing (accessed 2026-03-17)
+Source: platform.claude.com/docs/en/about-claude/pricing (accessed 2026-09-10)
 
 ### OpenAI
 
 | Model | Input $/MTok | Output $/MTok | Context Window | Best For |
 |-------|-------------|--------------|----------------|----------|
-| **GPT-5.4** | $2.50 | $15 | 1.05M tokens | Flagship; agentic, coding, professional workflows |
-| **GPT-5.4 Pro** | $30 | $180 | 1.05M tokens | Premium deep-reasoning tier |
-| **GPT-5.2** | $0.875 | $7 | 400k tokens | Mid-tier; good cost/quality balance |
-| **GPT-5-mini** | $0.125 | $1 | 400k tokens | Budget with large context |
-| **GPT-5 Nano** | $0.05 | $0.40 | 400k tokens | Ultra-cheap for high-volume |
-| **GPT-4.1** | $2 | $8 | 1M tokens | Great value with 1M context |
-| **GPT-4.1 Mini** | $0.20 | $0.80 | 1M tokens | Budget 1M context |
-| **o3** | $2 | $8 | 200k tokens | Reasoning model |
-| **o4-mini** | $1.10 | $4.40 | 200k tokens | Budget reasoning |
+| **GPT-6 Astra** | $10 | $50 | [unverified] | Flagship (released 2026-09-03) |
+| **GPT-5.6-Sol** | $4 | $20 | [unverified] | Top coding/agentic tier; promotional price through 2026-11-21 |
+| **GPT-5.6-Terra** | $2 | $12 | [unverified] | Mid-tier |
+| **GPT-5.6-Luna** | $0.20 | $1.20 | [unverified] | Budget tier |
+| **GPT-5.5** | $5 | $30 | <272k | Previous flagship, still listed |
+| **GPT-5.4** | $2.50 | $15 | <272k | Still listed |
+| **GPT-4.1** | $2 | $8 | 1M tokens | Still listed; 1M context |
 
-Long context surcharge: GPT-5.4 input doubles to $5/MTok beyond 272k tokens.
+Cached input: 10% of standard price. Batch API: 50% off. Older models (GPT-5.4 Mini/Nano, o3, o4-mini) remain listed at unchanged prices.
 
-Source: developers.openai.com/api/docs/pricing, pricepertoken.com (accessed 2026-03-17)
+Source: developers.openai.com/api/docs/pricing (accessed 2026-09-10)
 
 ### Google (Gemini)
 
 | Model | Input $/MTok | Output $/MTok | Context Window | Notes |
 |-------|-------------|--------------|----------------|-------|
-| **Gemini 2.5 Pro** | $1.25 | $10 | 1M tokens | Best value for large context |
+| **Gemini 3.1 Pro Preview** | $2 (≤200k) / $4 (>200k) | $12 / $18 | [unverified] | Current Pro-tier flagship; no GA "Gemini 3 Pro" yet |
+| **Gemini 3.8 / 3.7 / 3.6 Flash** | $0.75 | $3.75 | [unverified] | Promotional price through 2026-12-31, then $1.50 / $7.50 |
+| **Gemini 3.5 Flash** | $1.50 | $9 | [unverified] | |
+| **Gemini 2.5 Pro** | $1.25 / $2.50 | $10 / $15 | 1M tokens | Same >200k surcharge |
 | **Gemini 2.5 Flash** | $0.30 | $2.50 | — | Budget option |
-| **Gemini 3.1 Pro Preview** | $2 | $12 | — | Newest; preview pricing |
 
-Long context surcharge: >200k tokens = 2x input pricing for most models.
+Long context surcharge: >200k tokens roughly doubles input pricing on Pro models.
 
-Source: ai.google.dev/gemini-api/docs/pricing (accessed 2026-03-17)
+Source: ai.google.dev/gemini-api/docs/pricing (accessed 2026-09-10)
 
 ### DeepSeek
 
-| Model | Input $/MTok | Output $/MTok | Context Window | Notes |
-|-------|-------------|--------------|----------------|-------|
-| **DeepSeek V3.2** | $0.28 | $0.42 | 128k tokens | Chat and reasoning; 90% discount on cache hits |
-| **DeepSeek R1** (via OpenRouter) | $0.70 | $2.50 | 64k tokens | Third-party premium over direct API |
+| Model | Input $/MTok (cache miss) | Output $/MTok | Context Window | Notes |
+|-------|--------------------------|--------------|----------------|-------|
+| **DeepSeek V4.1 Flash** | $0.15 off-peak / $0.30 peak | $0.60 / $1.20 | 1M tokens | Current default; cache hits ~$0.003–0.006 |
+| **DeepSeek V4 Pro** | $0.66 / $1.32 | $1.98 / $3.96 | 1M tokens | Being phased out; routes to Flash pricing from 2026-09-14 |
 
-Source: api-docs.deepseek.com/quick_start/pricing (accessed 2026-03-17)
+Peak hours: 01:00–04:00 and 06:00–10:00 UTC, Mon–Fri. V3.x and R-series are no longer listed.
+
+Source: api-docs.deepseek.com/quick_start/pricing (accessed 2026-09-10)
 
 ### Quick Comparison (coding-tier models)
 
@@ -65,20 +68,21 @@ Source: api-docs.deepseek.com/quick_start/pricing (accessed 2026-03-17)
 
 | Provider | Model | Input $/MTok | Output $/MTok | Context |
 |----------|-------|-------------|--------------|---------|
-| Anthropic | Opus 4.6 | $5 | $25 | 1M |
-| OpenAI | GPT-5.4 | $2.50 | $15 | 1.05M |
-| Anthropic | Sonnet 4.6 | $3 | $15 | 1M |
-| Google | Gemini 2.5 Pro | $1.25 | $10 | 1M |
+| Anthropic | Fable 5.1 | $10 | $50 | 1M |
+| OpenAI | GPT-6 Astra | $10 | $50 | [unverified] |
+| Anthropic | Opus 5 | $5 | $25 | 1M |
+| OpenAI | GPT-5.6-Sol | $4 | $20 | [unverified] |
+| Google | Gemini 3.1 Pro Preview | $2 | $12 | [unverified] |
+| Anthropic | Sonnet 5 | $2 | $10 | 1M |
 
 **Budget tier** (best value):
 
 | Provider | Model | Input $/MTok | Output $/MTok | Context |
 |----------|-------|-------------|--------------|---------|
-| OpenAI | GPT-5-mini | $0.125 | $1 | 400k |
 | Anthropic | Haiku 4.5 | $1 | $5 | 200k |
-| Google | Gemini 2.5 Flash | $0.30 | $2.50 | — |
-| DeepSeek | V3.2 | $0.28 | $0.42 | 128k |
-| OpenAI | GPT-5 Nano | $0.05 | $0.40 | 400k |
+| Google | Gemini 3.8 Flash | $0.75 | $3.75 | [unverified] |
+| OpenAI | GPT-5.6-Luna | $0.20 | $1.20 | [unverified] |
+| DeepSeek | V4.1 Flash | $0.15–0.30 | $0.60–1.20 | 1M |
 
 ---
 
@@ -88,11 +92,11 @@ A typical agentic coding session (10-20 tool calls, ~50k tokens total):
 
 | Model tier | Approx. cost per session |
 |-----------|------------------------|
-| Nano/budget (GPT-5 Nano, DeepSeek V3.2, Gemini Flash) | < $0.02 |
-| Mid-tier (Haiku 4.5, GPT-5-mini, Gemini 2.5 Pro) | $0.05-$0.25 |
-| Coding-tier (Sonnet 4.6, GPT-5.4, GPT-4.1) | $0.15-$0.75 |
-| Premium (Opus 4.6, GPT-5.4 Pro) | $0.50-$2.00 |
-| Multi-agent (3 agents, coding-tier) | $0.50-$3.00 |
+| Nano/budget (GPT-5.6-Luna, DeepSeek V4.1 Flash, Gemini Flash) | < $0.05 |
+| Mid-tier (Haiku 4.5, Sonnet 5, Gemini 3.1 Pro) | $0.10-$0.50 |
+| Coding-tier (Opus 5, GPT-5.6-Sol) | $0.25-$1.25 |
+| Premium (Fable 5.1, GPT-6 Astra) | $0.50-$2.50 |
+| Multi-agent (3 agents, coding-tier) | $0.75-$4.00 |
 
 ---
 
@@ -147,7 +151,7 @@ Sources:
 | Output quality score | baseline | +90.2% | Significant improvement |
 | Token consumption | 1x | ~15x | Substantial cost increase |
 
-ROI is positive for complex, parallelizable tasks. ROI is negative for simple tasks where coordination overhead dominates. At March 2026 mid-tier pricing (~$3/$15 per MTok), a 3-agent session on a medium feature costs roughly $2-5 total.
+ROI is positive for complex, parallelizable tasks. ROI is negative for simple tasks where coordination overhead dominates. At September 2026 Opus 5 pricing ($5/$25 per MTok), a 3-agent session on a medium feature costs roughly $3-8 total; on Sonnet 5 ($2/$10) roughly $1-3.
 
 Source: Anthropic multi-agent research benchmarks (2025)
 
@@ -155,13 +159,13 @@ Source: Anthropic multi-agent research benchmarks (2025)
 
 ## When Human Work Is Cheaper
 
-A rough decision heuristic (recalibrated for March 2026 pricing):
+A rough decision heuristic (recalibrated for September 2026 pricing):
 
 - **Task takes a human < 2 minutes**: at current pricing, even the cheapest agent call may not save time (context loading + verification overhead)
 - **Task is repetitive across many files**: multi-agent ROI improves sharply; automation wins decisively
 - **Task requires judgment calls every step**: human-in-the-loop beats full automation
 - **Task output is hard to verify**: add verification cost to the total
-- **DeepSeek/Haiku tier**: at < $0.05 per session, the cost barrier has effectively disappeared — the question is quality, not price
+- **DeepSeek/Haiku tier**: at < $0.10 per session, the cost barrier has effectively disappeared — the question is quality, not price
 
 Rule of thumb: if you can't describe the success criteria in one sentence, the briefing cost may exceed the token cost.
 
@@ -169,10 +173,10 @@ Rule of thumb: if you can't describe the success criteria in one sentence, the b
 
 ## Sources
 
-- Anthropic pricing — platform.claude.com/docs/en/about-claude/pricing (accessed 2026-03-17)
-- OpenAI pricing (via OpenRouter) — openrouter.ai/openai (accessed 2026-03-17)
-- Google Gemini pricing — ai.google.dev/gemini-api/docs/pricing (accessed 2026-03-17)
-- DeepSeek pricing — api-docs.deepseek.com/quick_start/pricing (accessed 2026-03-17)
+- Anthropic pricing — platform.claude.com/docs/en/about-claude/pricing (accessed 2026-09-10)
+- OpenAI pricing — developers.openai.com/api/docs/pricing (accessed 2026-09-10)
+- Google Gemini pricing — ai.google.dev/gemini-api/docs/pricing (accessed 2026-09-10)
+- DeepSeek pricing — api-docs.deepseek.com/quick_start/pricing (accessed 2026-09-10)
 - Anthropic, context window guidance — engineering blog (2025)
 - Jaroslawicz et al., "How Many Instructions Can LLMs Follow at Once?" — arXiv (July 2025)
 - ETH Zurich, "Evaluating AGENTS.md" — arXiv 2602.11988 (February 2026)

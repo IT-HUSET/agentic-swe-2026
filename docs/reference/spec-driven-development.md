@@ -62,7 +62,7 @@ Anthropic's recommended pattern: "I want to build [feature]. Interview me using 
 
 ### AndThen (plugin, single-feature SDD)
 
-Skills (prefix `andthen.`): `andthen.clarify` → `andthen.spec` → `andthen.exec-spec` → `andthen.review-gap`. Produces a Feature Implementation Specification (FIS). The FIS is the process's primary written artifact — equivalent to a PRP but with automated elicitation and gap review.
+Skills (invoked as `/andthen:<skill>`): `/andthen:clarify` → `/andthen:spec` → `/andthen:exec-spec` → `/andthen:review --mode gap`. Produces a Feature Implementation Specification (FIS). The FIS is the process's primary written artifact — equivalent to a PRP but with automated elicitation and gap review.
 
 ### PRP (open source, artifact format)
 

@@ -6,7 +6,7 @@
 
 **Prerequisites:** Exercise 3 completed, AndThen plugin installed
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`)
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`)
 
 ---
 
@@ -134,7 +134,7 @@ claude --continue
 claude --resume
 ```
 
-You can also **fork** a conversation with `/branch` — this creates a copy you can take in a different direction while preserving the original.
+You can also **fork** a conversation with `/fork` — this creates a copy (in a background session) you can take in a different direction while preserving the original.
 
 And remember: **Esc Esc** (double escape) opens the rewind menu within any session, letting you restore code, conversation, or both from any previous checkpoint.
 
@@ -231,7 +231,7 @@ Compare actual responses vs expected. Willison: "Never assume that code generate
 Use AndThen for a thorough review:
 
 ```
-andthen.review-code
+/andthen:review
 ```
 
 Address any findings.
@@ -246,7 +246,7 @@ Try it: start a new Claude Code session and ask it to review the priority filter
 Review the recent changes to the todo list filtering. Focus on edge cases, error handling, and HTMX best practices.
 ```
 
-Compare this review to the one from `andthen.review-code`. Did the fresh-context reviewer catch anything the in-session reviewer missed?
+Compare this review to the one from `/andthen:review`. Did the fresh-context reviewer catch anything the in-session reviewer missed?
 
 ### 3.6 Clean Up
 
@@ -376,7 +376,7 @@ claude mcp remove context7
 | PR Contract | Intent + proof + risk tier + review areas before committing |
 | Red/Green TDD | Two-word shortcut: "Use red/green TDD" — tests are effectively free now |
 | MCP servers | External tools configured in `.mcp.json` |
-| Code review | Use `andthen.review-code` (or ask Claude directly) before committing |
+| Code review | Use `/andthen:review` (or ask Claude directly) before committing |
 
 ---
 

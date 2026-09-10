@@ -67,20 +67,20 @@ Source: Cole Medin, "Building Durable Agentic Systems" (2025)
 
 ## AndThen: The PIV Loop as a Plugin
 
-The [AndThen plugin](https://github.com/andthen/andthen) makes the PIV loop executable as Claude Code skills (prefix: `andthen.`). Each phase maps directly:
+The [AndThen plugin](https://github.com/IT-HUSET/andthen) makes the PIV loop executable as Claude Code skills (invoked as `/andthen:<skill>`). Each phase maps directly:
 
 | PIV Phase | AndThen Skill | What It Does |
 |-----------|---------------|--------------|
-| **Plan** | `andthen.clarify` | Asks structured clarifying questions, surfaces ambiguities |
-| **Plan** | `andthen.spec` | Produces a Feature Implementation Specification (FIS) — the written plan |
-| **Implement** | `andthen.exec-spec` | Implements from the FIS with validation loops |
-| **Validate** | `andthen.review-gap` | Compares implementation against the original spec |
+| **Plan** | `/andthen:clarify` | Asks structured clarifying questions, surfaces ambiguities |
+| **Plan** | `/andthen:spec` | Produces a Feature Implementation Specification (FIS) — the written plan |
+| **Implement** | `/andthen:exec-spec` | Implements from the FIS with validation loops |
+| **Validate** | `/andthen:review --mode gap` | Compares implementation against the original spec |
 
-For smaller tasks: `andthen.quick-implement` compresses Plan+Implement into a single step (skip when spec persistence matters).
+For smaller tasks: `/andthen:quick-implement` compresses Plan+Implement into a single step (skip when spec persistence matters).
 
-For orchestrated multi-story work: `andthen.exec-plan` runs an entire implementation plan through the full pipeline.
+For orchestrated multi-story work: `/andthen:exec-plan` runs an entire implementation plan through the full pipeline.
 
-Install: `/plugin install andthen`, then `andthen.init`
+Install: `/plugin marketplace add IT-HUSET/andthen`, then `/plugin install andthen`, then `/andthen:init`
 
 ---
 

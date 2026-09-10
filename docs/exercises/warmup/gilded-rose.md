@@ -9,7 +9,7 @@
 
 **Prerequisites:** Claude Code installed, `gilded-rose/` directory available
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`)
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`)
 
 ---
 
@@ -195,9 +195,9 @@ Create a git commit with all our changes. Write a detailed commit message.
 |---------|---------|
 | `/config` | Interactive settings panel (model, effort, theme, etc.) |
 | `/doctor` | Diagnose installation issues |
-| `/effort` | Control reasoning depth (low/medium/high) |
+| `/effort` | Control reasoning depth (low/medium/high/xhigh/max) |
 | `/init` | Analyze project and create CLAUDE.md |
-| `/model` | Switch model (sonnet, opus, haiku) |
+| `/model` | Switch model (opus, sonnet, haiku, fable; `default` resets to your plan default) |
 | `/terminal-setup` | Configure terminal for optimal experience |
 
 ### Context & Memory
@@ -215,7 +215,7 @@ Create a git commit with all our changes. Write a detailed commit message.
 
 | Command | Purpose |
 |---------|---------|
-| `/branch` | Fork conversation into a copy |
+| `/fork` | Fork conversation into a copy (background session) |
 | `/rename` | Name current session for findability |
 | `/resume` or `--resume` | Browse and continue a previous session |
 | `/rewind` or `Esc Esc` | Restore code/conversation from checkpoint |
@@ -230,6 +230,7 @@ Create a git commit with all our changes. Write a detailed commit message.
 | `/insights` | Session analysis report |
 | `/security-review` | Analyze changes for vulnerabilities |
 | `/usage` | Show plan limits and usage |
+| `/fast` | Toggle fast mode (Opus only, higher per-token price) |
 
 ### Extensions & Security
 
@@ -258,10 +259,11 @@ Create a git commit with all our changes. Write a detailed commit message.
 | Open in text editor | `Ctrl+G` | `Ctrl+G` |
 | Open rewind menu | `Esc Esc` | `Esc Esc` |
 | Paste image | `Ctrl+V` or `Cmd+V` (iTerm2) | `Ctrl+V` or `Alt+V` |
-| Push-to-talk (voice) | Hold `Space` | Hold `Space` |
+| Voice dictation (if enabled) | Hold `Space` | Hold `Space` |
 | Switch model | `Option+P` | `Alt+P` |
 | Toggle task list | `Ctrl+T` | `Ctrl+T` |
 | Toggle thinking | `Option+T` | `Alt+T` |
+| Toggle fast mode | `Option+O` | `Alt+O` |
 
 ---
 

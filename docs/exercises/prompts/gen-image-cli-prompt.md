@@ -28,17 +28,17 @@
 
 ### Provider Details
 
-**OpenAI (DALL-E 3):**
-- Model: `dall-e-3`
-- Sizes: 1024x1024 (square), 1024x1792 (portrait), 1792x1024 (landscape)
+**OpenAI (GPT Image):**
+- Model: `gpt-image-2` (DALL-E 2/3 were shut down in May 2026; `gpt-image-1` variants retire December 2026)
+- Endpoint: `/v1/images/generations`; map square/portrait/landscape to the sizes the model accepts (check the Images API docs)
 
 **Google Gemini:**
-- Model: `gemini-2.0-flash-exp` (or latest image-capable model)
+- Model: `gemini-3.1-flash-image` (or `gemini-3-pro-image` for higher quality; `gemini-2.0-flash-exp` is retired)
 - Aspect ratios mapped to API parameters
 
 **OpenRouter:**
-- Use the OpenAI-compatible API endpoint (`https://openrouter.ai/api/v1`)
-- Model: Use an image generation model available on OpenRouter
+- Use the OpenRouter Image API (`POST https://openrouter.ai/api/v1/images`)
+- Model: any image model listed on OpenRouter, e.g. `bytedance-seed/seedream-4.5` or `google/gemini-3.1-flash-image`
 - Pass `OPENROUTER_API_KEY` as the API key
 
 ### Example Usage

@@ -10,7 +10,7 @@
 
 > **Reference cards**: [Delegation Decision Tree](../../reference/delegation-decision-tree.md) · [Context Economics](../../reference/context-economics.md)
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`) — sub-agents can use different models; experiment with `haiku` for simple research agents
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`) — sub-agents can use different models; experiment with `sonnet` or `haiku` for simple research agents
 
 ---
 

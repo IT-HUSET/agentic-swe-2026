@@ -2,7 +2,7 @@
 
 **Time:** ~60 minutes | **Prerequisites:** Part 1 completed
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`)
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`)
 
 ---
 

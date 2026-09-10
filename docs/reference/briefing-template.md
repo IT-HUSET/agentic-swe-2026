@@ -6,7 +6,7 @@ Quick reference for writing structured prompts and specifications.
 
 ## The Five-Part Task Brief
 
-Five-component structure for any non-trivial task brief. These are the same components that spec-driven tools like [AndThen](https://github.com/IT-HUSET/andthen) (`andthen.clarify` → `andthen.plan`) and [PRP](https://github.com/coleam00/context-engineering-intro) generate automatically — formalizing what good engineering briefs have always contained.
+Five-component structure for any non-trivial task brief. These are the same components that spec-driven tools like [AndThen](https://github.com/IT-HUSET/andthen) (`/andthen:clarify` → `/andthen:plan`) and [PRP](https://github.com/coleam00/context-engineering-intro) generate automatically — formalizing what good engineering briefs have always contained.
 
 | Component | Purpose | Example |
 |-----------|---------|---------|
@@ -51,19 +51,19 @@ Place the Never tier prominently in CLAUDE.md. Agents respect explicit prohibiti
 
 ## AndThen Structured Briefing Workflow
 
-The [AndThen plugin](https://github.com/IT-HUSET/andthen) automates the structured brief into a workflow via skills (prefix: `andthen.`):
+The [AndThen plugin](https://github.com/IT-HUSET/andthen) automates the structured brief into a workflow via skills (invoked as `/andthen:<skill>`):
 
-1. **`andthen.clarify`** — agent asks structured clarifying questions. Your answers become the input to the next step.
-2. **`andthen.plan`** — discovers requirements and creates a PRD with implementation plan and story breakdown. Can start from a clarify session, an existing PRD, or from scratch. Detailed specs are created just-in-time per story.
-3. **`andthen.spec`** — produces a Feature Implementation Specification (FIS) for a single story or feature: scope, acceptance criteria, architecture decision, implementation tasks, and validation checklist. This is a formalized structured brief — machine-readable and session-persistent.
-4. **`andthen.exec-spec`** — implements from the FIS; the spec file replaces the conversation as the source of truth.
-5. **`andthen.review-gap`** — compares implementation against the original FIS.
+1. **`/andthen:clarify`** — agent asks structured clarifying questions. Your answers become the input to the next step.
+2. **`/andthen:prd`** then **`/andthen:plan`** — `prd` turns the clarified requirements into a Product Requirements Document; `plan` breaks the PRD into stories and writes a `plan.json` plus one spec (FIS) per story.
+3. **`/andthen:spec`** — produces a Feature Implementation Specification (FIS) for a single story or feature: scope, acceptance criteria, architecture decision, implementation tasks, and validation checklist. This is a formalized structured brief — machine-readable and session-persistent.
+4. **`/andthen:exec-spec`** — implements from the FIS; the spec file replaces the conversation as the source of truth.
+5. **`/andthen:review --mode gap`** — compares implementation against the original FIS.
 
 The FIS serves as the written artifact that survives context resets — equivalent to PRP but with a defined format. Choose AndThen when you want the spec to persist across sessions or agents.
 
-For larger work, **`andthen.exec-plan`** executes an entire plan through a pipeline (spec → exec-spec → review-gap per story), so you don't have to run each step manually.
+For larger work, **`/andthen:exec-plan`** executes an entire plan through a pipeline (exec-spec per story, then a final gap review across the whole plan), so you don't have to run each step manually.
 
-Quick path (no FIS generated): **`andthen.quick-implement`** — useful for simple, self-contained changes.
+Quick path (no FIS generated): **`/andthen:quick-implement`** — useful for simple, self-contained changes.
 
 ---
 

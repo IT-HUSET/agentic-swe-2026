@@ -12,7 +12,7 @@
 
 > **Time**: ~50 minutes
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`)
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`)
 
 ---
 

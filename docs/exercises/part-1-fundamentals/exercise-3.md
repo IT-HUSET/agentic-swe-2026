@@ -8,7 +8,7 @@
 
 **Prerequisites:** Exercises 1-2 completed
 
-> **Recommended model:** `sonnet` at medium effort (`/model sonnet`)
+> **Recommended model:** `opus` (Claude Opus 5) at the default effort (`/model opus`)
 
 ---
 
@@ -72,7 +72,7 @@ A good task brief for a coding agent covers five things. These are the same comp
 | **Success Criteria** | How to know it worked | "Tests pass, filter works manually" |
 | **Out of Scope** | Explicit exclusions | "Don't touch the database schema" |
 
-Use this for one-off task briefs: a specific feature, a refactor, a bug fix. Tools like [AndThen](https://github.com/IT-HUSET/andthen) (`andthen.clarify` → `andthen.spec`) and [PRP](https://github.com/coleam00/context-engineering-intro) automate this into a structured spec document — but the thinking is the same.
+Use this for one-off task briefs: a specific feature, a refactor, a bug fix. Tools like [AndThen](https://github.com/IT-HUSET/andthen) (`/andthen:clarify` → `/andthen:spec`) and [PRP](https://github.com/coleam00/context-engineering-intro) automate this into a structured spec document — but the thinking is the same.
 
 ### Osmani six-section format
 
@@ -173,20 +173,22 @@ Claude Code supports multiple models with adjustable reasoning effort:
 
 | Setting | Best for | Switch with |
 |---------|----------|-------------|
-| `sonnet` · medium effort | Most tasks — fast, cost-effective, good quality | `/model sonnet` (default) |
-| `sonnet` · high effort | Multi-file changes, complex logic, architecture | Increase effort in `/config` |
-| `opus` | Nuanced reasoning, large refactors, design decisions | `/model opus` |
-| `haiku` | Simple lookups, formatting, boilerplate generation | `/model haiku` |
+| `opus` (Claude Opus 5) · default effort | Most coding tasks in this workshop — strong reasoning, 1M context | `/model opus` |
+| `opus` · `xhigh` or `max` effort | Architecture decisions, large refactors, hard debugging | `/effort xhigh` (or `/effort max`) |
+| `sonnet` (Claude Sonnet 5) · `medium` effort | Well-scoped, mechanical tasks; cheaper worker sub-agents | `/model sonnet` |
+| `haiku` (Claude Haiku 4.5) | Simple lookups, formatting, boilerplate generation | `/model haiku` |
 
-**Reasoning effort** controls how deeply the model thinks before responding. Medium is the sweet spot for most work — fast enough to iterate, thorough enough for real tasks. Increase effort when precision matters more than speed.
+**Reasoning effort** (`low` / `medium` / `high` / `xhigh` / `max`) controls how deeply the model thinks before responding and how many tool calls it makes. Lower effort means faster, terser turns; higher effort means more thorough work at higher token cost. Change it with `/effort <level>` or in `/config`.
 
-**Cost awareness:** Opus costs roughly 1.7x more than Sonnet per token. Haiku costs roughly 3x less than Sonnet. See the pricing table in `docs/reference/context-economics.md` for current ratios. In a workshop, Sonnet at medium effort gives the best balance of quality, speed, and cost. Use Opus when the task is complex enough that getting it right the first time saves more than the extra cost.
+> **Check your default:** Pro and Team Standard plans default to Sonnet 5; Max, Team Premium and Enterprise default to Opus 5. Run `/model` to see what you are on, and switch to `opus` for the exercises.
+
+**Cost awareness:** Opus 5 costs 2.5x more than Sonnet 5 per token ($5/$25 vs $2/$10 per million input/output tokens). Haiku 4.5 costs half of Sonnet 5. See the pricing table in `docs/reference/context-economics.md` for current numbers. In a workshop, Opus 5 at the default effort gives the best results per turn; drop to Sonnet 5 for repetitive, well-specified work where a cheaper model gets it right anyway.
 
 **Check your costs:** Run `/cost` at any point to see token usage and estimated cost for the current session. This builds awareness of how different models and approaches affect spend. Try running `/cost` before and after invoking your skill to see the token impact.
 
 Match the model to the skill's task:
-- A `write-test` skill → `sonnet`, medium (fast iteration, well-scoped output)
-- A `review-architecture` skill → `opus` (nuanced reasoning, fewer but better passes)
+- A `write-test` skill → `sonnet` at `medium` effort (fast iteration, well-scoped output)
+- A `review-architecture` skill → `opus` at `xhigh` effort (nuanced reasoning, fewer but better passes)
 - A `format-imports` skill → `haiku` (trivial task, speed matters most)
 
 **What instructions?**
@@ -199,6 +201,7 @@ name: your-skill-name
 description: One sentence: what this skill does and when to use it
 allowed-tools: Read, Edit, Write, Bash
 model: sonnet
+effort: medium
 ---
 
 [Your instructions here]
@@ -223,18 +226,19 @@ The AndThen plugin provides multi-step structured workflows — from requirement
 ### Install
 
 ```
+/plugin marketplace add IT-HUSET/andthen
 /plugin install andthen
-andthen.init
+/andthen:init
 ```
 
-`andthen.init` reads your project and configures the plugin with project-specific context.
+`/andthen:init` reads your project and configures the plugin with project-specific context.
 
 ### 4.1 Review the Exercise 2 code
 
 Run a structured review on the bug fixes you made in Exercise 2:
 
 ```
-andthen.review-code
+/andthen:review
 ```
 
 This runs a multi-dimensional review: code quality, security considerations, architecture patterns, and (for frontend changes) UI/UX implications. Read the findings. Did it surface anything you missed?
@@ -242,7 +246,7 @@ This runs a multi-dimensional review: code quality, security considerations, arc
 ### 4.2 Quick-implement a small feature
 
 ```
-andthen.quick-implement Add a character count indicator to the todo title field (max 100 chars)
+/andthen:quick-implement Add a character count indicator to the todo title field (max 100 chars)
 ```
 
 Watch the structured cycle: research the codebase, implement, verify. Compare this to how you would have approached the same task with a one-line vague prompt.

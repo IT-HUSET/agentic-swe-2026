@@ -16,7 +16,7 @@
 
 > **Time**: ~90 minutes
 
-> **Recommended model:** `sonnet` at high effort, or `opus` — greenfield builds benefit from stronger reasoning for architecture decisions (`/model opus`)
+> **Recommended model:** `opus` (Claude Opus 5); raise effort for the architecture decisions (`/effort xhigh` or `/effort max`) — greenfield builds benefit from deeper reasoning
 
 ---
 

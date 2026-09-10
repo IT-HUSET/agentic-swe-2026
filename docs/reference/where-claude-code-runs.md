@@ -10,9 +10,9 @@ Quick reference for Claude Code's three execution environments.
 |---|---|---|---|
 | **Code runs on** | Your machine | Your machine | Anthropic cloud VM |
 | **You interact via** | Terminal | Terminal + browser + mobile | Browser + mobile |
-| **Start with** | `claude` | `claude --rc` or `/rc` | `claude --remote "task"` or claude.ai/code |
+| **Start with** | `claude` | `claude --rc` or `/rc` | `claude --cloud "task"` or claude.ai/code |
 | **Local filesystem** | Full access | Full access | No — GitHub repo clone only |
-| **MCP servers** | Available | Available | Not available |
+| **MCP servers** | Available | Available | Repo-committed `.mcp.json` only |
 | **Hooks** | All (user + repo) | All (user + repo) | Repo-committed only |
 | **CLAUDE.md** | All (user + repo) | All (user + repo) | Repo-committed only |
 | **User settings** | `~/.claude/settings.json` | `~/.claude/settings.json` | Not carried over |
@@ -32,7 +32,7 @@ Quick reference for Claude Code's three execution environments.
 | Repos you don't have cloned locally | **Web** |
 | Multiple parallel tasks (bug fixes, refactors) | **Web** |
 | Tasks needing local MCP servers or custom tools | **Local CLI** or **Remote Control** |
-| CI/CD automation | **Local CLI** (`claude -p`) or **Web** (`claude --remote`) |
+| CI/CD automation | **Local CLI** (`claude -p`) or **Web** (`claude --cloud`) |
 
 ---
 
@@ -58,12 +58,12 @@ Press spacebar in server mode to show a QR code for your phone.
 ### Claude Code on the Web
 
 ```bash
-# Send a task to run in the cloud
-claude --remote "Fix the flaky test in auth.spec.ts"
+# Send a task to run in the cloud (--remote still works as a deprecated alias)
+claude --cloud "Fix the flaky test in auth.spec.ts"
 
 # Run multiple tasks in parallel
-claude --remote "Update API documentation"
-claude --remote "Refactor logger to structured output"
+claude --cloud "Update API documentation"
+claude --cloud "Refactor logger to structured output"
 
 # Check progress
 /tasks
@@ -71,7 +71,7 @@ claude --remote "Refactor logger to structured output"
 # Pull a cloud session back to your terminal
 claude --teleport        # interactive picker
 claude --teleport <id>   # specific session
-/teleport                # from inside Claude Code
+/teleport                # from inside Claude Code (or /tp)
 ```
 
 ---
@@ -86,21 +86,21 @@ The most important thing about these environments: **where code runs determines 
 | `~/.claude/settings.json` | Yes | Yes | No |
 | `.claude/settings.json` (in repo) | Yes | Yes | Yes |
 | CLAUDE.md (in repo) | Yes | Yes | Yes |
-| MCP servers | Yes | Yes | No |
+| MCP servers | Yes | Yes | Repo `.mcp.json` only |
 | Setup scripts (cloud config) | N/A | N/A | Yes |
 | SessionStart hooks (in repo) | Yes | Yes | Yes |
 
 **Takeaway:** If you want your context artifacts to work everywhere — including cloud sessions — commit them to the repo. This means:
 - Keep CLAUDE.md up to date (it's your context that travels)
-- Commit `.claude/settings.json` with hooks and permission rules
+- Commit `.claude/settings.json` with hooks and permission rules, and `.mcp.json` for MCP servers
 - Use SessionStart hooks (not user-level settings) for setup that should run in all environments
 
 ---
 
 ## Requirements
 
-- **Remote Control:** Pro/Max/Team/Enterprise plan, claude.ai OAuth (`/login`), Claude Code v2.1.51+
-- **Web:** Pro/Max/Team/Enterprise plan, GitHub account connected, Claude GitHub app installed on repos
+- **Remote Control:** Pro/Max/Team/Enterprise plan, claude.ai OAuth (`/login`); on Team/Enterprise an Owner must enable it in admin settings
+- **Web:** Pro/Max/Team plan (Enterprise with premium seats), GitHub account connected (Claude GitHub App or `/web-setup`)
 - **API keys are not supported** for either feature — both require claude.ai authentication
 
 ---

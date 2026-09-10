@@ -36,20 +36,20 @@ Source: IndyDevDan, "Claude Code: The Full Guide" (2025), youtube.com/@IndyDevDa
 
 ## AndThen Plugin Skills
 
-AndThen adds structured-workflow skills to Claude Code (prefix: `andthen.`). Skills are auto-invoked by the agent or triggered by name — they orchestrate sub-agents, tool calls, and validation loops internally.
+AndThen adds structured-workflow skills to Claude Code (invoked as `/andthen:<skill>`). Skills are auto-invoked by the agent or triggered by name — they orchestrate sub-agents, tool calls, and validation loops internally.
 
 | Skill | When to Use |
 |-------|-------------|
-| `andthen.clarify` | Starting a non-trivial feature — surfaces ambiguities before committing to a spec |
-| `andthen.spec` | Writing a persistent Feature Implementation Specification (FIS) |
-| `andthen.exec-spec` | Implementing from a written FIS with automated validation loops |
-| `andthen.review-gap` | Checking that implementation matches the original spec |
-| `andthen.quick-implement` | Small tasks where spec overhead isn't justified |
-| `andthen.exec-plan` | Multi-story implementation plans — full pipeline per story |
-| `andthen.review-code` | Structured code review (quality, security, architecture) |
-| `andthen.e2e-test` | Browser-based end-to-end validation |
+| `/andthen:clarify` | Starting a non-trivial feature — surfaces ambiguities before committing to a spec |
+| `/andthen:spec` | Writing a persistent Feature Implementation Specification (FIS) |
+| `/andthen:exec-spec` | Implementing from a written FIS with automated validation loops |
+| `/andthen:review --mode gap` | Checking that implementation matches the original spec |
+| `/andthen:quick-implement` | Small tasks where spec overhead isn't justified |
+| `/andthen:exec-plan` | Multi-story implementation plans — full pipeline per story |
+| `/andthen:review` | Structured code review (quality, security, architecture) |
+| `/andthen:e2e-test` | Browser-based end-to-end validation |
 
-Install: `/plugin install andthen` → `andthen.init`
+Install: `/plugin marketplace add IT-HUSET/andthen` → `/plugin install andthen` → `/andthen:init`
 
 ---
 

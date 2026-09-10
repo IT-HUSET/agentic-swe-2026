@@ -16,7 +16,7 @@
 
 > **Time**: ~90 minutes
 
-> **Recommended model:** `sonnet` at high effort, or `opus` for orchestration design — multi-agent coordination benefits from stronger reasoning (`/model opus`)
+> **Recommended model:** `opus` (Claude Opus 5) for the orchestrator; raise effort for the orchestration design (`/effort xhigh` or `/effort max`); consider `sonnet` for well-scoped worker agents
 
 ---
 
@@ -28,7 +28,7 @@ The Anthropic multi-agent anti-patterns to avoid are: agents with unclear scope 
 
 When you are done, you will have a working feature, a design document written before a line was generated, a cost comparison, and a clear account of whether the multi-agent approach was worth it.
 
-> **If using Agent Teams:** Use `/tasks` to manage the shared task list — create tasks, assign to teammates, track progress. Press **Shift+Down** to cycle between teammates in in-process mode, or use split panes (tmux/iTerm2) to see them working simultaneously. Monitor with `/cost` to track token spend across the team.
+> **If using Agent Teams:** Use `/tasks` to manage the shared task list — create tasks, assign to teammates, track progress. In in-process mode, use the **up/down arrow keys** in the agent panel below the prompt to select a teammate and **Enter** to view and message it; or set `teammateMode` to split panes (tmux/iTerm2) to see them working simultaneously. Monitor with `/cost` to track token spend across the team.
 
 ---
 
